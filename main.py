@@ -3,12 +3,12 @@ def main():
     text = get_text(book_path)
     single_words = text.split()
     words_number = word_count(single_words)
-    print(words_number)
+   
     lower_case_text = text.lower()
     count_characters = chara_count(lower_case_text)
     wb = make_list_dict(count_characters)
     wb.sort(reverse=True, key=sort_on)
-    print(report(wb))
+    print(f"--- Begin report of {book_path} ---\n {words_number} words found in the document \n {report(wb)}\n --- End report ---")
     
 def chara_count(book):
     letters_only = ''.join([x for x in book if x.isalpha()])
@@ -48,7 +48,7 @@ def sort_on(dict):
 def report(data):
     bookreport = ""
     for entry in data:
-        bookreport += f"The '{entry}' character was found {entry} times"
+        bookreport += f"\n The '{entry['letter']}' character was found {entry['Num']} times"
     return bookreport
 
 main()
