@@ -6,7 +6,9 @@ def main():
     print(words_number)
     lower_case_text = text.lower()
     count_characters = chara_count(lower_case_text)
-    print(count_characters)
+    wb = make_list_dict(count_characters)
+    wb.sort(reverse=True, key=sort_on)
+    print(report(wb))
     
 def chara_count(book):
     letters_only = ''.join([x for x in book if x.isalpha()])
@@ -35,11 +37,19 @@ def word_count(book):
         words_total += 1
     return words_total
     
+
+
+def make_list_dict(woerterbuch):
+    return [{"letter": x, "Num": woerterbuch[x]} for x in woerterbuch]
+    
 def sort_on(dict):
-    return dict["num"]
+    return dict["Num"]
 
-
-
+def report(data):
+    bookreport = ""
+    for entry in data:
+        bookreport += f"The '{entry}' character was found {entry} times"
+    return bookreport
 
 main()
 
