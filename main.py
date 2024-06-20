@@ -5,18 +5,22 @@ def main():
     words_number = word_count(single_words)
     print(words_number)
     lower_case_text = text.lower()
-    count_characters = chara_count(text)
+    count_characters = chara_count(lower_case_text)
     print(count_characters)
     
 def chara_count(book):
+    letters_only = ''.join([x for x in book if x.isalpha()])
     characters = []
-    characters[:] = book
+    characters[:] = letters_only
+    
     dict_characters = {}
-    for character in characters: 
-        if character in dict_characters:
-            dict_characters[character] += 1
+    for chara in characters: 
+        if chara in dict_characters:
+            dict_characters[chara] += 1
         else:
-            dict_characters[character] = 1
+            dict_characters[chara] = 1
+    
+    
     return dict_characters
     
 
@@ -31,6 +35,9 @@ def word_count(book):
         words_total += 1
     return words_total
     
+def sort_on(dict):
+    return dict["num"]
+
 
 
 
